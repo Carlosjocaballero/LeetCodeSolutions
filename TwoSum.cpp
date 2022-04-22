@@ -14,20 +14,41 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <unordered_map>
 using namespace std;
 
-vector<int> TwoSum(vector<int>& nums, int target){
-    vector<int> solution;
-    for(int i=0; i<nums.size(); ++i){
-        for(int j=i+1; j < nums.size(); ++j){
-            if(nums[i] + nums[j] == target){
-                solution.push_back(i);
-                solution.push_back(j);
-                return solution;
-            }
+// vector<int> TwoSum(vector<int>& nums, int target){
+//     vector<int> solution;
+//     for(int i=0; i<nums.size(); ++i){
+//         for(int j=i+1; j < nums.size(); ++j){
+//             if(nums[i] + nums[j] == target){
+//                 solution.push_back(i);
+//                 solution.push_back(j);
+//                 return solution;
+//             }
+//         }
+//     }
+//     return solution;
+// }
+
+/**
+ * @brief Better algorithm for TwoSum
+ * 
+ * @return int 
+ */
+vector<int> TwoSum(vector<int>& nums, int target) {
+    vector<int> ans;
+    unordered_map<int,int> m;
+    for(int i=0;i<nums.size();i++){
+        if(m.find(target-nums[i])!=m.end()){
+            ans.push_back(m[target-nums[i]]);
+            ans.push_back(i);
+            return ans;
         }
+        m[nums[i]]=i;
     }
-    return solution;
+    return ans;  
+        
 }
 
 int main(){
