@@ -19,6 +19,6 @@ bool isValid(string s){
 }
 
 int main (){
-    string s = "({})"
+    string s = "({}[(){[{[[{{([{([([{}])])}])}}]]}]}])";
     cout << isValid(s) << endl;
 }
